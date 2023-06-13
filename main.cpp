@@ -2,7 +2,7 @@
 #include "Rsa.hpp"
 
 [[nodiscard]]
-std::vector<types::DATA_BLOCK> get_numbers_from_string(const std::string &word) {
+std::vector<types::DATA_BLOCK> get_numbers_from_string(const std::vector<uint8_t> &word) {
   std::vector<types::DATA_BLOCK> to_encrypt{};
   types::unumber_t num{0};
   int i = 0;
@@ -25,14 +25,14 @@ std::vector<types::DATA_BLOCK> get_numbers_from_string(const std::string &word) 
 }
 
 [[nodiscard]]
-std::string get_string_from_numbers(const std::vector<types::DATA_BLOCK> &numbers) {
+std::vector<uint8_t> get_string_from_numbers(const std::vector<types::DATA_BLOCK> &numbers) {
   namespace mp = boost::multiprecision;
 
-  std::string str;
+  std::vector<uint8_t> str;
   for (auto num: numbers) {
     while (num > 0) {
       const auto c = num % mp::pow(types::number_t{2}, 8);
-      str.push_back(static_cast<char>(c));
+      str.push_back(static_cast<uint8_t>(c));
       num = num >> 8;
     }
   }
@@ -50,10 +50,12 @@ int main(int argc, char *argv[]) {
   std::cout << "publiczny: " << pub << "\nprywatny: " << priv << "\nmod: " << modulo << "\n";
 
   std::string word{argv[1]};
-  std::vector<types::DATA_BLOCK> data = get_numbers_from_string(word);
+  std::vector<uint8_t> buffer(word.begin(), word.end());
+  std::vector<types::DATA_BLOCK> data = get_numbers_from_string(buffer);
   std::vector<types::DATA_BLOCK> encrypted = Rsa::useKey(pub, modulo, data);
   std::vector<types::DATA_BLOCK> decrypted = Rsa::useKey(priv, modulo, encrypted);
-  std::string decrypted_word = get_string_from_numbers(decrypted);
+  std::vector<uint8_t> decrypted_buffer = get_string_from_numbers(decrypted);
+  std::string decrypted_word(decrypted_buffer.begin(), decrypted_buffer.end());
   std::cout << decrypted_word << "\n";
 
   return 0;
