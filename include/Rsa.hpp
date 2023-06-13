@@ -6,7 +6,11 @@
 #include "Constants.hpp"
 
 class Rsa {
-  using KEYS = std::tuple<types::number_t, types::number_t, types::number_t>;
+public:
+  typedef types::number_t PUBLIC_KEY;
+  typedef types::number_t PRIVATE_KEY;
+  typedef types::number_t MODULO;
+  using KEYS = std::tuple<PUBLIC_KEY, PRIVATE_KEY, MODULO>;
 
   static KEYS generateKeys();
 };

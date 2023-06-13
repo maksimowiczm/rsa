@@ -1,12 +1,9 @@
 #include <iostream>
-#include "Constants.hpp"
-#include "NumberGenerator.hpp"
+#include "Rsa.hpp"
 
 int main() {
-  NumberGenerator gen;
-  types::number_t num = gen.getNext();
+  const auto [pub, priv, modulo] = Rsa::generateKeys();
 
-  std::cout << num << "\n";
-
+  std::cout << "publiczny: " << pub << "\nprywatny: " << priv << "\nmod: " << modulo << "\n";
   return 0;
 }
