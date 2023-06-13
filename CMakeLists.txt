@@ -3,7 +3,7 @@ project(bsk_rsa)
 
 set(CMAKE_CXX_STANDARD 23)
 
-add_executable(bsk_rsa main.cpp generator/NumberGenerator.cpp generator/NumberGenerator.hpp rsa/Rsa.cpp rsa/Rsa.hpp)
+add_executable(bsk_rsa main.cpp NumberGenerator.cpp Rsa.cpp)
 include_directories(include)
 
 #boost

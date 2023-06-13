@@ -12,12 +12,11 @@ types::number_t NumberGenerator::getNext() {
   types::unumber_t num = gen();
   // first bit always 1
   num = num >> 1;
-  num += mp::pow(types::unumber_t(2), constants::KEY_SIZE - 1);
+  num += mp::pow(types::unumber_t(2), constants::PQ_SIZE - 1);
   return {num};
 }
 
 types::number_t NumberGenerator::getPrime() {
-
   const auto predicate = [](const types::number_t &num) {
     if (num > primes.back())
       return mp::miller_rabin_test(types::unumber_t{num}, 10000);

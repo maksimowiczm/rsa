@@ -1,6 +1,6 @@
 #include <iostream>
 #include "Constants.hpp"
-#include "generator/NumberGenerator.hpp"
+#include "NumberGenerator.hpp"
 
 int main() {
   NumberGenerator gen;

@@ -5,7 +5,8 @@
 #include <boost/multiprecision/cpp_int.hpp>
 
 namespace constants {
-  constexpr int KEY_SIZE = 512;
+  constexpr int KEY_SIZE = 64;
+  constexpr int PQ_SIZE = KEY_SIZE / 2;
 }
 
 namespace types {

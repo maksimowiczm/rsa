@@ -12,7 +12,7 @@ private:
 
   static std::vector<uint64_t> get_primes(uint64_t n);
 
-  typedef boost::random::independent_bits_engine<boost::random::mt19937, constants::KEY_SIZE, types::unumber_t> generator_t;
+  typedef boost::random::independent_bits_engine<boost::random::mt19937, constants::PQ_SIZE, types::unumber_t> generator_t;
   generator_t gen;
 
 public:
