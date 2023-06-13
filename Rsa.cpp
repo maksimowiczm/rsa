@@ -23,3 +23,16 @@ Rsa::KEYS Rsa::generateKeys() {
   }
   return {pub, priv, N};
 }
+
+std::vector<types::DATA_BLOCK>
+Rsa::useKey(const Rsa::KEY &key, const Rsa::MODULO &modulo, const std::vector<types::DATA_BLOCK> &data) {
+  std::vector<types::DATA_BLOCK> output;
+  output.reserve(data.size());
+
+  for (const auto &block: data) {
+    const auto przemielone = mp::powm(block, key, modulo);
+    output.push_back(przemielone);
+  }
+
+  return output;
+}

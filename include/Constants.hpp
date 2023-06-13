@@ -5,7 +5,7 @@
 #include <boost/multiprecision/cpp_int.hpp>
 
 namespace constants {
-  constexpr int KEY_SIZE = 1024;
+  constexpr int KEY_SIZE = 512;
   constexpr int PQ_SIZE = KEY_SIZE / 2;
 }
 
@@ -22,4 +22,5 @@ namespace types {
           constants::KEY_SIZE,
           boost::multiprecision::unsigned_magnitude,
           boost::multiprecision::unchecked, void>> unumber_t;
+  typedef number_t DATA_BLOCK;
 }
